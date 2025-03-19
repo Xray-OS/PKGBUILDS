@@ -1,0 +1,21 @@
+pkgname=adaos-keyring
+pkgver=1
+pkgrel=2
+pkgdesc='Ada-OS keyring'
+arch=('any')
+url='https://sourceforge.net/projects/ada-os/'
+license=('GPL')
+install="${pkgname}.install"
+source=('https://raw.githubusercontent.com/Xray-OS/Ada-keyring/main/Makefile'
+        'https://raw.githubusercontent.com/Xray-OS/Ada-keyring/main/adaos.gpg'
+        'https://raw.githubusercontent.com/Xray-OS/Ada-keyring/main/ada-revoked')
+validpgpkeys=('53892E7FF910F862B27FC3AEDDDE8A365C9CF7C9'  # angel_lopez
+             )
+sha512sums=('SKIP'
+            'SKIP'
+            'SKIP')
+
+package() {
+	cd "${srcdir}"
+	make PREFIX=/usr DESTDIR=${pkgdir} install
+}
